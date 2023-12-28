@@ -8,11 +8,11 @@ private val exclusionPackages = listOf(
     "kotlin.collections",
 )
 
-fun Sequence<KSClassDeclaration>.checkSerializer(exclusion: Collection<KSClassDeclaration>) {
+fun Sequence<KSClassDeclaration>.checkSerializer(exclusion: Collection<String>) {
 
     forEach {
         check(
-            it in exclusion ||
+            it.qualifiedName?.asString() in exclusion ||
             it.classKind == ClassKind.ENUM_CLASS ||
             it.packageName.asString() in exclusionPackages ||
             it.annotations.any { annotation ->

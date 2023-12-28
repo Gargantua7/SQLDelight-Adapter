@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
 }
 
-val groupVersion by extra("1.0.0-SNAPSHOT")
+val groupVersion by extra("1.0.1-SNAPSHOT")
 
 val localProperties = Properties().apply {
     val localPropertiesFile = rootProject.file("local.properties")

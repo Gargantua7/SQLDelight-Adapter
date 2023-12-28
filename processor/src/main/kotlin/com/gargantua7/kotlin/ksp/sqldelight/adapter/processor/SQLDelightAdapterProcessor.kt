@@ -29,7 +29,7 @@ class SQLDelightAdapterProcessor(
         val adapters = inputPackageName.split(",").flatMap { resolver.collectAdapter(it.trim()) }
 
         adapters.forEach {
-            it.properties.map { it.second }.checkSerializer(serializers.keys)
+            it.properties.map { it.second }.checkSerializer(serializers.keys.mapNotNull { it.qualifiedName?.asString() })
         }
 
         codeGenerator.generationAdapter(serializers, adapters, outputPackageName)
