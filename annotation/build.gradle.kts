@@ -17,24 +17,15 @@ kotlin {
                 jvmTarget = "1.8"
             }
         }
+
+        publishLibraryVariants("release")
     }
     iosX64()
     iosArm64()
 
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "16.0"
-        framework {
-            baseName = "annotation"
-            isStatic = true
-        }
-    }
-
     sourceSets {
-        commonMain.dependencies {
-            //put your multiplatform dependencies here
+        androidMain {
+            dependsOn(commonMain.get())
         }
     }
 }
@@ -43,18 +34,6 @@ android {
     namespace = "com.gargantua7.kotlin.ksp.sqldelight.annotation"
     compileSdk = 34
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
 }
-//
-//publishing {
-//    publications {
-//        withType<MavenPublication> {
-//        from(components[target.name])
-//
-//        groupId = "com.gargantua7.ksp.sqldelight.adapter"
-//        artifactId = "annotation-${target.name}"
-//        version = rootProject.extra["groupVersion"] as String
-//        }
-//    }
-//}

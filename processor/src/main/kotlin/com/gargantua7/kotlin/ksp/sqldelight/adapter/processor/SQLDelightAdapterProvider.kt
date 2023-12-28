@@ -8,7 +8,8 @@ class SQLDelightAdapterProvider: SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return SQLDelightAdapterProcessor(
             environment.codeGenerator,
-            environment.options["packages"] ?: "",
+            environment.options["packages"]?: error("No package name provided"),
+            environment.options["output"]?: error("No output package name provided"),
             environment.logger
         )
     }

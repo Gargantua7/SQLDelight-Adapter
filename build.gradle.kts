@@ -7,7 +7,8 @@ plugins {
     alias(libs.plugins.android.library) apply false
 }
 
-val groupVersion by extra("0.1.0-SNAPSHOT")
+val groupVersion by extra("1.0.0-SNAPSHOT")
+
 val localProperties = Properties().apply {
     val localPropertiesFile = rootProject.file("local.properties")
     if (localPropertiesFile.exists()) {
@@ -28,7 +29,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/gargantua7/kotlin-ksp-sqldelight-adapter")
+            url = uri(localProperties.getProperty("github.repo"))
             credentials {
                 username = localProperties.getProperty("github.actor")
                 password = localProperties.getProperty("github.token")
